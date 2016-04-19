@@ -40,13 +40,11 @@ if [ ! $? -eq 0 ]; then
   exit 1
 fi
 
-# TODO: fix this later
-#
-# bundle exec reek
-# if [ ! $? -eq 0 ]; then
-#  echo 'reek detected code smells, commit aborted'
-#  exit 1
-# fi
+bundle exec reek
+if [ ! $? -eq 0 ]; then
+  echo 'reek detected code smells, commit aborted'
+  exit 1
+fi
 
 bundle exec rspec
 if [ ! $? -eq 0 ]; then

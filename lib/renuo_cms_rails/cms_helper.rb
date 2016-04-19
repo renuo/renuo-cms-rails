@@ -10,6 +10,7 @@ module RenuoCmsRails
 
     private
 
+    # :reek:FeatureEnvy
     def cms_attributes(url_path)
       config = RenuoCmsRails.configuration
       cms_attributes = { content_path: url_path, api_host: config.api_host, api_key: config.api_key }
