@@ -20,7 +20,7 @@ module RenuoCmsRails
 
     def capture_default_value(path, default_value)
       return default_value if default_value
-      return yield if block_given?
+      return capture { yield } if block_given?
 
       I18n.t(path)
     end

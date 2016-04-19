@@ -3,6 +3,7 @@ require 'spec_helper'
 describe RenuoCmsRails::CmsHelper do
   include RenuoCmsRails::CmsHelper
   include ActionView::Helpers::TagHelper
+  include RenuoCmsRailsSpecHelper
 
   before(:each) do
     RenuoCmsRails.configuration.api_host = 'some.host'
