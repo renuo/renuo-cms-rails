@@ -17,7 +17,6 @@ Style/FileName:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-  EnforcedStyle: always
 
 AllCops:
   TargetRubyVersion: 2.3
