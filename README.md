@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/renuo-cms-rails.svg)](https://badge.fury.io/rb/renuo-cms-rails) [![Build Status](https://secure.travis-ci.org/renuo/renuo-cms-rails.png)](http://travis-ci.org/renuo/renuo-cms-rails)
+[![Gem Version](https://badge.fury.io/rb/renuo-cms-rails.svg)](https://badge.fury.io/rb/renuo-cms-rails) [![Build Status](https://travis-ci.org/renuo/renuo-cms-rails.svg?branch=master)](https://travis-ci.org/renuo/renuo-cms-rails) [![Build Status](https://travis-ci.org/renuo/renuo-cms-rails.svg?branch=develop)](https://travis-ci.org/renuo/renuo-cms-rails)
 
 # Renuo CMS Rails
 
