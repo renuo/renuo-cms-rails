@@ -1,4 +1,6 @@
-# Renuo CMS Rails [![Build Status](https://secure.travis-ci.org/renuo/renuo_cms_rails.png)](http://travis-ci.org/renuo/renuo_cms_rails)
+[![Gem Version](https://badge.fury.io/rb/renuo-cms-rails.svg)](https://badge.fury.io/rb/renuo-cms-rails) [![Build Status](https://secure.travis-ci.org/renuo/renuo-cms-rails.png)](http://travis-ci.org/renuo/renuo-cms-rails)
+
+# Renuo CMS Rails
 
 Gem for Rails 4.1+ applications that use the excellent Renuo CMS.
 
@@ -19,7 +21,7 @@ So far it includes:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'renuo_cms_rails'
+gem 'renuo-cms-rails'
 ```
 
 And then execute:

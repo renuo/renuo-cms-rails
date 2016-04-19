@@ -3,17 +3,17 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'renuo_cms_rails/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'renuo_cms_api'
+  spec.name = 'renuo-cms-rails'
   spec.version = RenuoCmsRails::VERSION
   spec.authors = ['Lukas Elmer']
   spec.email = ['lukas.elmer@renuo.ch']
 
   spec.summary = 'Rails helpers for the renuo-cms'
   spec.description = 'The Renuo CLI automates some commonly used workflows by providing a command line interface.'
-  spec.homepage = 'https://github.com/renuo/renuo_cms_rails'
+  spec.homepage = 'https://github.com/renuo/renuo-cms-rails'
   spec.license = 'MIT'
 
-  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|bin)/}) }
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']

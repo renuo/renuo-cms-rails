@@ -32,3 +32,4 @@ AllCops:
     - 'config/unicorn.rb'
     - 'db/**/*'
     - 'vendor/bundle/**/*'
+    - 'lib/renuo-cms-rails.rb'
