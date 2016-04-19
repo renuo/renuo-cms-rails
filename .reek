@@ -3,9 +3,6 @@ IrresponsibleModule:
   enabled: false
 Attribute:
   enabled: false
-"app/helpers":
-  UtilityFunction:
-    enabled: false
 
 exclude_paths:
   - tmp
