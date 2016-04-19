@@ -1,4 +1,4 @@
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 require 'renuo_cms_rails'
 require 'capybara'
 require 'climate_control'

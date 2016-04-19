@@ -16,7 +16,8 @@ Style/FileName:
   - 'Gemfile.local.example.rb'
 
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
+  Enabled: false
+  EnforcedStyle: always
 
 AllCops:
   TargetRubyVersion: 2.3

@@ -27,7 +27,6 @@ Dir.chdir APP_ROOT do
     install_or_update_gem('pry')
     install_or_update_gem('rubocop')
     install_or_update_gem('reek')
-    install_or_update_gem('brakeman')
     install_or_update_gem('filewatcher')
   end
 

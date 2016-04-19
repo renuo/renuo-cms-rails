@@ -3,7 +3,7 @@ require 'action_view/helpers'
 module RenuoCmsRails
   module CmsHelper
     def cms(path, default_value = nil, &block)
-      url_path = "#{path}-#{I18n.locale.to_s}"
+      url_path = "#{path}-#{I18n.locale}"
       default_translation = capture_default_value(path, default_value, &block)
       content_tag(:div, default_translation, data: cms_attributes(url_path))
     end

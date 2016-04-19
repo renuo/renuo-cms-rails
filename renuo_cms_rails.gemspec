@@ -26,6 +26,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'capybara',        '~> 2.4', '>= 2.4.3'
   gem.add_development_dependency 'climate_control', '~> 0', '>= 0.0.3'
   gem.add_development_dependency 'rubocop'
-  gem.add_development_dependency 'brakeman'
   gem.add_development_dependency 'reek'
 end
