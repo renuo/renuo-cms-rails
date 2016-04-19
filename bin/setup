@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+require 'pathname'
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+
+def run(name, file_which_must_not_exist = nil)
+  unless file_which_must_not_exist && File.exist?(file_which_must_not_exist)
+    puts "== #{name} =="
+    yield
+    puts
+  end
+end
+
+def install_or_update_gem(gem)
+  if ENV['UPDATE']
+    system "gem install #{gem}"
+  else
+    system "which #{gem.gsub('_', '-')} || gem install #{gem}"
+  end
+end
+
+Dir.chdir APP_ROOT do
+  run 'Installing dependencies' do
+    system 'gem install bundler --conservative'
+    system 'bundle check || bundle install --jobs=3 --retry=3'
+    install_or_update_gem('pry')
+    install_or_update_gem('rubocop')
+    install_or_update_gem('reek')
+    install_or_update_gem('brakeman')
+    install_or_update_gem('filewatcher')
+  end
+
+  run 'Creating pre-commit hook link', '.git/hooks/pre-commit' do
+    system 'ln -s ../../bin/check .git/hooks/pre-commit'
+  end
+
+  run('Running checks') { abort('bin/check failed') unless system('bin/check') }
+end
