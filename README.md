@@ -112,6 +112,21 @@ end
 Of course, you can also add an application controller method, and make it a helper_method. See
 http://api.rubyonrails.org/classes/AbstractController/Helpers/ClassMethods.html#method-i-helper_method for details.
 
+## Release
+
+```sh
+git flow release start [.....]
+# adjust version.rb
+bundle install
+git commit -av
+git flow release finish [.....]
+git push origin develop:develop
+git push origin master:master
+git checkout master
+bundle exec rake release
+git checkout develop
+```
+
 ## Contributing
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file.
