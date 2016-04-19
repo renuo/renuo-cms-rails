@@ -1,30 +1,34 @@
-require File.expand_path('../lib/renuo_cms_rails/version', __FILE__)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'renuo_cms_rails/version'
 
-Gem::Specification.new do |gem|
-  gem.authors       = ['Lukas Elmer']
-  gem.email         = ['lukas.elmer@renuo.ch']
-  gem.description   = %q{Renuo CMS Rails}
-  gem.summary       = %q{Rails helpers for the renuo-cms}
-  gem.homepage      = 'https://github.com/sgruhier/renuo_cms_rails'
+Gem::Specification.new do |spec|
+  spec.name = 'renuo_cms_api'
+  spec.version = RenuoCmsRails::VERSION
+  spec.authors = ['Lukas Elmer']
+  spec.email = ['lukas.elmer@renuo.ch']
 
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  gem.files         = `git ls-files`.split("\n")
-  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  gem.name          = 'renuo_cms_rails'
-  gem.require_paths = ['lib']
-  gem.version       = RenuoCmsRails::VERSION
-  gem.license       = 'MIT'
+  spec.summary = 'Rails helpers for the renuo-cms'
+  spec.description = 'The Renuo CLI automates some commonly used workflows by providing a command line interface.'
+  spec.homepage = 'https://github.com/renuo/renuo_cms_rails'
+  spec.license = 'MIT'
 
-  gem.add_dependency 'railties',      '~> 4.1'
-  gem.add_dependency 'actionpack',    '~> 4.1'
-  gem.add_dependency 'activemodel',   '~> 4.1'
-  gem.add_dependency 'activesupport', '~> 4.1'
-  gem.add_dependency 'tzinfo',        '~> 1.2', '>= 1.2.2'
+  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.bindir = 'exe'
+  spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ['lib']
+  spec.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
-  gem.add_development_dependency 'rspec-rails',     '~> 3.1', '>= 3.1.0'
-  gem.add_development_dependency 'mime-types',      '~> 2'
-  gem.add_development_dependency 'capybara',        '~> 2.4', '>= 2.4.3'
-  gem.add_development_dependency 'climate_control', '~> 0', '>= 0.0.3'
-  gem.add_development_dependency 'rubocop'
-  gem.add_development_dependency 'reek'
+  spec.add_dependency 'railties',      '~> 4.1'
+  spec.add_dependency 'actionpack',    '~> 4.1'
+  spec.add_dependency 'activemodel',   '~> 4.1'
+  spec.add_dependency 'activesupport', '~> 4.1'
+  spec.add_dependency 'tzinfo',        '~> 1.2', '>= 1.2.2'
+
+  spec.add_development_dependency 'rspec-rails',     '~> 3.1', '>= 3.1.0'
+  spec.add_development_dependency 'mime-types',      '~> 2'
+  spec.add_development_dependency 'capybara',        '~> 2.4', '>= 2.4.3'
+  spec.add_development_dependency 'climate_control', '~> 0', '>= 0.0.3'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'reek'
 end
