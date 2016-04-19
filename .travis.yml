@@ -1,3 +1,24 @@
+sudo: false
+language: ruby
 rvm:
   - 2.3.0
-sudo: false
+addons:
+  apt:
+    packages:
+    - zsh
+bundler_args: --without production development --deployment --jobs=3 --retry=3
+cache:
+  bundler: true
+  apt: true
+  directories:
+    - coverage
+before_install:
+  - export TZ=Europe/Zurich
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+script: bin/setup
+notifications:
+  email:
+    on_success: change
+    on_failure: always
