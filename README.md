@@ -114,6 +114,16 @@ end
 Of course, you can also add an application controller method, and make it a helper_method. See
 http://api.rubyonrails.org/classes/AbstractController/Helpers/ClassMethods.html#method-i-helper_method for details.
 
+### CMS Content Path
+
+The CMS appends ```-#{I18n.locale}``` to the content path to localize the CMS content. Additionally, dots will be converted to dashes.
+
+Example: If you use the path ```article.index.title``` and the I18n.locale ```en```, the CMS content path will be
+
+```
+article-index-title-en
+```
+
 ## Development of renuo-cms-rails
 
 ### Contributing
