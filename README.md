@@ -73,7 +73,7 @@ Of course, you can also use it like this, where the whole block is the default t
   p = t('.paragraph-2')
 ```
 
-## Configuration
+### Configuration
 
 The configuration is optional. If you want to use it, add an initializer file to your Rails app:
 *config/initializers/renuo_cms_rails.rb* containing the following block:
@@ -89,7 +89,7 @@ RenuoCmsRails.configure do |config|
 end
 ```
 
-## Authorization
+### Authorization
 
 To implement the authorization, implement a method ```cms_admin?``` in your application helper. Example (with devise):
 
@@ -114,7 +114,13 @@ end
 Of course, you can also add an application controller method, and make it a helper_method. See
 http://api.rubyonrails.org/classes/AbstractController/Helpers/ClassMethods.html#method-i-helper_method for details.
 
-## Release
+## Development of renuo-cms-rails
+
+### Contributing
+
+See the [CONTRIBUTING](CONTRIBUTING.md) file.
+
+### Release
 
 ```sh
 git flow release start [.....]
@@ -128,10 +134,6 @@ git checkout master
 bundle exec rake release
 git checkout develop
 ```
-
-## Contributing
-
-See the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ## Special Thanks
 
