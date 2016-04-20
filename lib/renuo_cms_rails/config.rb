@@ -1,21 +1,21 @@
 module RenuoCmsRails
   class << self
-    attr_writer :configuration
+    attr_writer :config
   end
 
-  def self.configuration
-    @configuration ||= Configuration.new
+  def self.config
+    @config ||= Config.new
   end
 
   def self.reset
-    @configuration = Configuration.new
+    @config = Config.new
   end
 
   def self.configure
-    yield(configuration)
+    yield(config)
   end
 
-  class Configuration
+  class Config
     attr_accessor :api_host
     attr_accessor :api_key
     attr_accessor :private_api_key

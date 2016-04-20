@@ -6,9 +6,9 @@ describe RenuoCmsRails::CmsHelper do
   include RenuoCmsRailsSpecHelper
 
   before(:each) do
-    RenuoCmsRails.configuration.api_host = 'some.host'
-    RenuoCmsRails.configuration.api_key = 'apikey'
-    RenuoCmsRails.configuration.private_api_key = 'pk'
+    RenuoCmsRails.config.api_host = 'some.host'
+    RenuoCmsRails.config.api_key = 'apikey'
+    RenuoCmsRails.config.private_api_key = 'pk'
   end
 
   it 'sets the correct attributes for the public view' do
