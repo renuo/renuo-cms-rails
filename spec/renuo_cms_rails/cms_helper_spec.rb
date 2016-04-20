@@ -6,9 +6,10 @@ describe RenuoCmsRails::CmsHelper do
   include RenuoCmsRailsSpecHelper
 
   before(:each) do
-    RenuoCmsRails.configuration.api_host = 'some.host'
-    RenuoCmsRails.configuration.api_key = 'apikey'
-    RenuoCmsRails.configuration.private_api_key = 'pk'
+    RenuoCmsRails.reset
+    RenuoCmsRails.config.api_host = 'some.host'
+    RenuoCmsRails.config.api_key = 'apikey'
+    RenuoCmsRails.config.private_api_key = 'pk'
   end
 
   it 'sets the correct attributes for the public view' do
@@ -55,5 +56,14 @@ describe RenuoCmsRails::CmsHelper do
     expect(node).to have_css("div[data-api-host='some.host']")
     expect(node).to have_css("div[data-api-key='apikey']")
     expect(node).not_to have_css('div[data-private-api-key]')
+  end
+
+  it 'uses the custom content_path_generator config' do
+    allow(self).to receive(:cms_admin?).and_return(false)
+
+    RenuoCmsRails.config.content_path_generator = ->(path) { "#{I18n.locale}--#{path}" }
+
+    node = Capybara.string cms('some.content', 'Some CMS content')
+    expect(node).to have_css("div[data-content-path='en--some.content']")
   end
 end
