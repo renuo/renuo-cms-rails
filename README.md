@@ -86,6 +86,8 @@ RenuoCmsRails.configure do |config|
   config.api_key = 'custom-api-key'
   # Default: ENV['RENUO_CMS_PRIVATE_API_KEY']
   config.private_api_key = 'custom-private-api-key'
+  # Default: ->(path) { "#{path}-#{I18n.locale}" }
+  config.content_path_generator = ->(path) { "#{I18n.locale}--#{path}" }
 end
 ```
 

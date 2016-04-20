@@ -46,5 +46,20 @@ describe RenuoCmsRails do
         end
       end
     end
+
+    describe '#content_path_generator' do
+      it 'the default content path generator does the right thing' do
+        config = RenuoCmsRails::Config.new
+        expect(config.content_path_generator.call('some.path')).to eq('some.path-en')
+      end
+    end
+
+    describe '#content_path_generator=' do
+      it 'can set the content_path_generator' do
+        config = RenuoCmsRails::Config.new
+        config.content_path_generator = ->(x) { "en-#{x}" }
+        expect(config.content_path_generator.call('abc')).to eq('en-abc')
+      end
+    end
   end
 end
