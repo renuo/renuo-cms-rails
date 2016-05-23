@@ -119,6 +119,7 @@ http://api.rubyonrails.org/classes/AbstractController/Helpers/ClassMethods.html#
 ```sh
 git flow release start [.....]
 # adjust version.rb
+# check (and adjust) CHANGELOG.md
 bundle install
 git commit -av
 git flow release finish [.....]
