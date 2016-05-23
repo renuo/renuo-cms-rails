@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/renuo-cms-rails.svg)](https://badge.fury.io/rb/renuo-cms-rails) [![Build Status](https://secure.travis-ci.org/renuo/renuo-cms-rails.png)](http://travis-ci.org/renuo/renuo-cms-rails)
+[![Gem Version](https://badge.fury.io/rb/renuo-cms-rails.svg)](https://badge.fury.io/rb/renuo-cms-rails) [![Build Status](https://travis-ci.org/renuo/renuo-cms-rails.svg?branch=master)](https://travis-ci.org/renuo/renuo-cms-rails) [![Build Status](https://travis-ci.org/renuo/renuo-cms-rails.svg?branch=develop)](https://travis-ci.org/renuo/renuo-cms-rails)
 
 # Renuo CMS Rails
 
@@ -73,7 +73,7 @@ Of course, you can also use it like this, where the whole block is the default t
   p = t('.paragraph-2')
 ```
 
-## Configuration
+### Configuration
 
 The configuration is optional. If you want to use it, add an initializer file to your Rails app:
 *config/initializers/renuo_cms_rails.rb* containing the following block:
@@ -86,10 +86,12 @@ RenuoCmsRails.configure do |config|
   config.api_key = 'custom-api-key'
   # Default: ENV['RENUO_CMS_PRIVATE_API_KEY']
   config.private_api_key = 'custom-private-api-key'
+  # Default: ->(path) { "#{path}-#{I18n.locale}" }
+  config.content_path_generator = ->(path) { "#{I18n.locale}--#{path}" }
 end
 ```
 
-## Authorization
+### Authorization
 
 To implement the authorization, implement a method ```cms_admin?``` in your application helper. Example (with devise):
 
@@ -114,7 +116,23 @@ end
 Of course, you can also add an application controller method, and make it a helper_method. See
 http://api.rubyonrails.org/classes/AbstractController/Helpers/ClassMethods.html#method-i-helper_method for details.
 
-## Release
+### CMS Content Path
+
+The CMS appends ```-#{I18n.locale}``` to the content path to localize the CMS content. Additionally, dots will be converted to dashes.
+
+Example: If you use the path ```article.index.title``` and the I18n.locale ```en```, the CMS content path will be
+
+```
+article-index-title-en
+```
+
+## Development of renuo-cms-rails
+
+### Contributing
+
+See the [CONTRIBUTING](CONTRIBUTING.md) file.
+
+### Release
 
 ```sh
 git flow release start [.....]
@@ -129,10 +147,6 @@ git checkout master
 bundle exec rake release
 git checkout develop
 ```
-
-## Contributing
-
-See the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ## Special Thanks
 

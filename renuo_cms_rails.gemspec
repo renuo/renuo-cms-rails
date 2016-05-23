@@ -19,16 +19,16 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
-  spec.add_dependency 'railties',      '~> 4.1'
-  spec.add_dependency 'actionpack',    '~> 4.1'
-  spec.add_dependency 'activemodel',   '~> 4.1'
-  spec.add_dependency 'activesupport', '~> 4.1'
-  spec.add_dependency 'tzinfo',        '~> 1.2', '>= 1.2.2'
+  spec.add_dependency 'railties',      '>= 4.1.0'
+  spec.add_dependency 'actionpack',    '>= 4.1.0'
+  spec.add_dependency 'activemodel',   '>= 4.1.0'
+  spec.add_dependency 'activesupport', '>= 4.1.0'
+  spec.add_dependency 'tzinfo',        '>= 1.2.2'
 
-  spec.add_development_dependency 'rspec-rails',     '~> 3.1', '>= 3.1.0'
-  spec.add_development_dependency 'mime-types',      '~> 2'
-  spec.add_development_dependency 'capybara',        '~> 2.4', '>= 2.4.3'
-  spec.add_development_dependency 'climate_control', '~> 0', '>= 0.0.3'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'reek'
+  spec.add_development_dependency 'rspec-rails',      '>= 3.4.2'
+  spec.add_development_dependency 'mime-types',       '>= 2.99.1'
+  spec.add_development_dependency 'capybara',         '>= 2.7.0'
+  spec.add_development_dependency 'climate_control',  '>= 0.0.3'
+  spec.add_development_dependency 'rubocop',          '>= 0.39.0'
+  spec.add_development_dependency 'reek',             '>= 4.0.1'
 end

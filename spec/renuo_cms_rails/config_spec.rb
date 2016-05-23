@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RenuoCmsRails do
-  describe RenuoCmsRails::Configuration do
+  describe RenuoCmsRails::Config do
     [
       [:RENUO_CMS_API_HOST, :api_host, 'https://custom.host', 'https://new.host'],
       [:RENUO_CMS_API_KEY, :api_key, 'custom-api-key', 'new-key'],
@@ -10,7 +10,7 @@ describe RenuoCmsRails do
       describe "##{method}" do
         it 'is the default value from the ENV variable' do
           ClimateControl.modify env_variable_name => default_value do
-            config = RenuoCmsRails::Configuration.new
+            config = RenuoCmsRails::Config.new
             expect(config.send(method)).to eq(default_value)
           end
         end
@@ -18,14 +18,14 @@ describe RenuoCmsRails do
 
       describe "##{method}=" do
         it 'can set value without an env variable' do
-          config = RenuoCmsRails::Configuration.new
+          config = RenuoCmsRails::Config.new
           config.send("#{method}=", new_value)
           expect(config.send(method)).to eq(new_value)
         end
 
         it 'can set value when an env variable is defined' do
           ClimateControl.modify env_variable_name => default_value do
-            config = RenuoCmsRails::Configuration.new
+            config = RenuoCmsRails::Config.new
             config.send("#{method}=", new_value)
             expect(config.send(method)).to eq(new_value)
           end
@@ -39,9 +39,9 @@ describe RenuoCmsRails do
               config.send("#{method}=", new_value)
             end
 
-            expect(RenuoCmsRails.configuration.send(method)).to eq(new_value)
+            expect(RenuoCmsRails.config.send(method)).to eq(new_value)
             RenuoCmsRails.reset
-            expect(RenuoCmsRails.configuration.send(method)).to eq(default_value)
+            expect(RenuoCmsRails.config.send(method)).to eq(default_value)
           end
         end
       end
@@ -49,7 +49,7 @@ describe RenuoCmsRails do
 
     describe '#api_host_with_protocol' do
       it 'does not change the api host if the protocol is configured' do
-        config = RenuoCmsRails::Configuration.new
+        config = RenuoCmsRails::Config.new
         expect(config).to receive(:api_host).and_return('https://some.host', 'http://some.host', '//some.host')
         expect(config.api_host_with_protocol).to eq('https://some.host')
         expect(config.api_host_with_protocol).to eq('http://some.host')
@@ -57,10 +57,25 @@ describe RenuoCmsRails do
       end
 
       it 'prepends https if no protocol is configured' do
-        config = RenuoCmsRails::Configuration.new
+        config = RenuoCmsRails::Config.new
         expect(config).to receive(:api_host).and_return('some.host', 'other.host')
         expect(config.api_host_with_protocol).to eq('https://some.host')
         expect(config.api_host_with_protocol).to eq('https://other.host')
+      end
+    end
+
+    describe '#content_path_generator' do
+      it 'the default content path generator does the right thing' do
+        config = RenuoCmsRails::Config.new
+        expect(config.content_path_generator.call('some.path')).to eq('some.path-en')
+      end
+    end
+
+    describe '#content_path_generator=' do
+      it 'can set the content_path_generator' do
+        config = RenuoCmsRails::Config.new
+        config.content_path_generator = ->(x) { "en-#{x}" }
+        expect(config.content_path_generator.call('abc')).to eq('en-abc')
       end
     end
   end

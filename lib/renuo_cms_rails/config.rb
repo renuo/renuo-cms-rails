@@ -1,32 +1,33 @@
 module RenuoCmsRails
   class << self
-    attr_writer :configuration
+    attr_writer :config
   end
 
-  def self.configuration
-    @configuration ||= Configuration.new
+  def self.config
+    @config ||= Config.new
   end
 
   def self.reset
-    @configuration = Configuration.new
+    @config = Config.new
   end
 
   def self.configure
-    yield(configuration)
+    yield(config)
   end
 
-  class Configuration
+  class Config
     attr_writer :api_host
     attr_reader :api_host
     private :api_host
-
     attr_accessor :api_key
     attr_accessor :private_api_key
+    attr_accessor :content_path_generator
 
     def initialize
       self.api_host = ENV['RENUO_CMS_API_HOST']
       self.api_key = ENV['RENUO_CMS_API_KEY']
       self.private_api_key = ENV['RENUO_CMS_PRIVATE_API_KEY']
+      self.content_path_generator = ->(path) { "#{path}-#{I18n.locale}" }
     end
 
     def api_host_with_protocol
