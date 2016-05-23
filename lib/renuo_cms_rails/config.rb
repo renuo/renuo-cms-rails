@@ -32,9 +32,7 @@ module RenuoCmsRails
 
     def api_host_with_protocol
       host = api_host
-
       return host if host.start_with?('https://', 'http://', '//')
-
       "https://#{host}"
     end
   end
