@@ -137,6 +137,7 @@ See the [CONTRIBUTING](CONTRIBUTING.md) file.
 ```sh
 git flow release start [.....]
 # adjust version.rb
+# check (and adjust) CHANGELOG.md
 bundle install
 git commit -av
 git flow release finish [.....]

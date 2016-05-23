@@ -18,7 +18,7 @@ describe RenuoCmsRails::CmsHelper do
     node = Capybara.string cms('some.content', 'Some CMS content')
     expect(node).to have_css('div', text: 'Some CMS content')
     expect(node).to have_css("div[data-content-path='some.content-en']")
-    expect(node).to have_css("div[data-api-host='some.host']")
+    expect(node).to have_css("div[data-api-host='https://some.host']")
     expect(node).to have_css("div[data-api-key='apikey']")
     expect(node).not_to have_css('div[data-private-api-key]')
   end
@@ -29,7 +29,7 @@ describe RenuoCmsRails::CmsHelper do
     node = Capybara.string cms('some.content', 'Some CMS content')
     expect(node).to have_css('div', text: 'Some CMS content')
     expect(node).to have_css("div[data-content-path='some.content-en']")
-    expect(node).to have_css("div[data-api-host='some.host']")
+    expect(node).to have_css("div[data-api-host='https://some.host']")
     expect(node).to have_css("div[data-api-key='apikey']")
     expect(node).to have_css("div[data-private-api-key='pk']")
   end
@@ -41,7 +41,7 @@ describe RenuoCmsRails::CmsHelper do
     expect(node).not_to have_css('div', text: 'Some CMS content')
     expect(node).to have_css('div p', text: 'Block content!')
     expect(node).to have_css("div[data-content-path='some.content-en']")
-    expect(node).to have_css("div[data-api-host='some.host']")
+    expect(node).to have_css("div[data-api-host='https://some.host']")
     expect(node).to have_css("div[data-api-key='apikey']")
     expect(node).not_to have_css('div[data-private-api-key]')
   end
@@ -53,7 +53,7 @@ describe RenuoCmsRails::CmsHelper do
     node = Capybara.string cms('some.content')
     expect(node).to have_css('div', text: 'I18n.t content!')
     expect(node).to have_css("div[data-content-path='some.content-en']")
-    expect(node).to have_css("div[data-api-host='some.host']")
+    expect(node).to have_css("div[data-api-host='https://some.host']")
     expect(node).to have_css("div[data-api-key='apikey']")
     expect(node).not_to have_css('div[data-private-api-key]')
   end

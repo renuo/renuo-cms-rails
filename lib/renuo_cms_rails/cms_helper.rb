@@ -11,9 +11,10 @@ module RenuoCmsRails
     private
 
     # :reek:FeatureEnvy
+
     def cms_attributes(content_path)
       config = RenuoCmsRails.config
-      cms_attributes = { content_path: content_path, api_host: config.api_host, api_key: config.api_key }
+      cms_attributes = { content_path: content_path, api_host: config.api_host_with_protocol, api_key: config.api_key }
       cms_attributes[:private_api_key] = config.private_api_key if cms_admin?
       cms_attributes
     end
