@@ -10,4 +10,19 @@ describe RenuoCmsRails::Cache::Cacher do
       expect(cacher.instance_variable_get('@contents')).to eq('contents')
     end
   end
+
+  describe '#get' do
+    it 'gets the cached content' do
+      cacher = described_class.new
+      cacher.instance_variable_set('@contents', 'a' => 'aa', 'b' => 'bb')
+      expect(cacher.get('a')).to eq('aa')
+      expect(cacher.get('b')).to eq('bb')
+      expect(cacher.get('c')).to eq(nil)
+    end
+
+    it 'gets returns nil if the cache is not initialized' do
+      cacher = described_class.new
+      expect(cacher.get('a')).to eq(nil)
+    end
+  end
 end

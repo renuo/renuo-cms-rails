@@ -9,8 +9,9 @@ module RenuoCmsRails
         @contents = @api.load_contents
       end
 
-      # :reek:UnusedParameters
       def get(content_path)
+        return unless @contents
+        @contents[content_path]
       end
     end
   end
