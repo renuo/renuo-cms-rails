@@ -30,7 +30,7 @@ And then execute:
 bundle
 ```
 
-To include the JS-client include the following javascript file:
+For using the JS-client you need to include the following javascript file:
 
 ```
 //cdn.jsdelivr.net/renuo-cms-client/1.0.5/renuo-cms-client.min.js
