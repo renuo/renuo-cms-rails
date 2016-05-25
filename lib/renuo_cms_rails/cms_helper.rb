@@ -3,17 +3,18 @@ require 'action_view/helpers'
 module RenuoCmsRails
   module CmsHelper
     def cms(path, default_value = nil, &block)
-      url_path = "#{path}-#{I18n.locale}"
+      content_path = RenuoCmsRails.config.content_path_generator.call(path)
       default_translation = capture_default_value(path, default_value, &block)
-      content_tag(:div, default_translation, data: cms_attributes(url_path))
+      content_tag(:div, default_translation, data: cms_attributes(content_path))
     end
 
     private
 
     # :reek:FeatureEnvy
-    def cms_attributes(url_path)
-      config = RenuoCmsRails.configuration
-      cms_attributes = { content_path: url_path, api_host: config.api_host, api_key: config.api_key }
+
+    def cms_attributes(content_path)
+      config = RenuoCmsRails.config
+      cms_attributes = { content_path: content_path, api_host: config.api_host_with_protocol, api_key: config.api_key }
       cms_attributes[:private_api_key] = config.private_api_key if cms_admin?
       cms_attributes
     end
