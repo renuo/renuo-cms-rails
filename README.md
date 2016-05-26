@@ -30,14 +30,13 @@ And then execute:
 bundle
 ```
 
-For using the JS-client you need to include the following javascript file in your project (please use the latest version, which can be found here: https://www.jsdelivr.com/projects/renuo-cms-client):
+To use the JS client you need to include the following JS file in your project (please use the latest version, which can be found here: https://www.jsdelivr.com/projects/renuo-cms-client):
 
+```html
+<script src="https://cdn.jsdelivr.net/renuo-cms-client/XXX/renuo-cms-client.min.js" integrity="sha256-XXX" crossorigin="anonymous"></script>
 ```
-//cdn.jsdelivr.net/renuo-cms-client/1.0.5/renuo-cms-client.min.js
-```
 
-It is recommended to use a fixed version instead of using *latest* to not be affected of changes.
-
+Use a fixed version of the library so you are not affected by changes without testing them, and to have a consistent behavior for all users.
 
 ## Usage
 
