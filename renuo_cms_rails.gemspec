@@ -31,4 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'climate_control',  '>= 0.0.3'
   spec.add_development_dependency 'rubocop',          '>= 0.39.0'
   spec.add_development_dependency 'reek',             '>= 4.0.1'
+  spec.add_development_dependency 'timecop',          '>= 0.8.0'
+  spec.add_development_dependency 'webmock',          '>= 2.0.3'
 end
