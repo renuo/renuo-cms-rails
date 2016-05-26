@@ -2,7 +2,7 @@ require_relative 'cache/cacher'
 
 module RenuoCmsRails
   module Cache
-    @cache = Cacher.new
+    @cache = Cacher.new(RenuoCmsRails::API)
 
     attr_reader :cache
 

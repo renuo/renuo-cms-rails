@@ -1,12 +1,12 @@
 module RenuoCmsRails
   module Cache
     class Cacher
-      def initialize(api = nil)
+      def initialize(api)
         @api = api
       end
 
       def initialize_cache
-        @contents = @api.load_contents
+        @contents = @api.fetch_contents
       end
 
       def get(content_path)
