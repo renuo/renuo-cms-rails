@@ -14,7 +14,10 @@ module RenuoCmsRails
 
       # :reek:UtilityFunction
       def cache_time
-        # note: using integer division for rounding, so that we get a new key every 2 minutes
+        # note: using integer division for rounding, so that we get a new key every 2 minutes, e.g.
+        # part 1: 249 / 120 = 2 (not 2.075)
+        # part 2: 2 * 120 = 240
+        # all: (249 / 120) * 120 = 240
         (Time.now.to_i / MAX_CACHE_TTL) * MAX_CACHE_TTL
       end
 
