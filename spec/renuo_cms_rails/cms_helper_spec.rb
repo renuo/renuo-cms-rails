@@ -62,20 +62,20 @@ describe RenuoCmsRails::CmsHelper do
       allow(self).to receive(:cms_admin?).and_return(false)
 
       original = RenuoCmsRails::Cache.instance_variable_get('@cache')
-      expect(original).to receive(:get).with('some.content').and_return('Cached content!')
+      expect(original).to receive(:get).with('some.content-en').and_return('Cached content!')
       node1 = Capybara.string cms('some.content')
       expect(node1).to have_css('div', text: 'Cached content!')
 
-      expect(original).to receive(:get).with('some.content').and_return('Cached content!')
+      expect(original).to receive(:get).with('some.content-en').and_return('Cached content!')
       node2 = Capybara.string cms('some.content') { content_tag('p', 'Block content!') }
       expect(node2).to have_css('div', text: 'Cached content!')
 
-      expect(original).to receive(:get).with('some.content').and_return('Cached content!')
+      expect(original).to receive(:get).with('some.content-en').and_return('Cached content!')
       I18n.backend.store_translations :en, some: { content: 'I18n.t content!' }
       node3 = Capybara.string cms('some.content')
       expect(node3).to have_css('div', text: 'Cached content!')
 
-      expect(original).to receive(:get).with('some.content').and_return('Cached content!')
+      expect(original).to receive(:get).with('some.content-en').and_return('Cached content!')
       node4 = Capybara.string cms('some.content', 'default content')
       expect(node4).to have_css('div', text: 'Cached content!')
     end

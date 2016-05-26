@@ -4,7 +4,8 @@ module RenuoCmsRails
   module CmsHelper
     def cms(path, default_value = nil, &block)
       content_path = RenuoCmsRails.config.content_path_generator.call(path)
-      default_translation = capture_default_value(path, default_value, &block)
+      cache = RenuoCmsRails::Cache.cache.get(content_path)
+      default_translation = cache&.html_safe || capture_default_value(path, default_value, &block)
       content_tag(:div, default_translation, data: cms_attributes(content_path))
     end
 
@@ -20,8 +21,6 @@ module RenuoCmsRails
     end
 
     def capture_default_value(path, default_value)
-      cache = RenuoCmsRails::Cache.cache.get(path)
-      return cache if cache
       return default_value if default_value
       return capture { yield } if block_given?
 
