@@ -20,6 +20,8 @@ module RenuoCmsRails
     end
 
     def capture_default_value(path, default_value)
+      cache = RenuoCmsRails::Cache.cache.get(path)
+      return cache if cache
       return default_value if default_value
       return capture { yield } if block_given?
 
