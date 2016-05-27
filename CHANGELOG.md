@@ -1,3 +1,7 @@
+## Version 0.2.1
+
+* rescue if there is an error making the http request
+
 ## Version 0.2.0
 
 * implement server side caching of cms contents
