@@ -71,7 +71,7 @@ describe RenuoCmsRails::API::Contents do
 
       it 'returns an empty hash if the JSON is invalid' do
         config = RenuoCmsRails::Config.new
-        config.api_host = 'http://example.com'
+        config.api_host = 'example.com'
         config.api_key = 'somekey'
         config.private_api_key = 'pk'
         contents_api = RenuoCmsRails::API::Contents.new(config)
@@ -80,7 +80,7 @@ describe RenuoCmsRails::API::Contents do
 
       it 'returns an empty hash if the JSON is not complete' do
         config = RenuoCmsRails::Config.new
-        config.api_host = 'http://example.com'
+        config.api_host = 'example.com'
         config.api_key = 'somekey'
         config.private_api_key = 'pk'
         contents_api = RenuoCmsRails::API::Contents.new(config)
@@ -89,7 +89,7 @@ describe RenuoCmsRails::API::Contents do
 
       it 'returns an empty hash if the API request was not successful' do
         config = RenuoCmsRails::Config.new
-        config.api_host = 'http://example.com'
+        config.api_host = 'example.com'
         config.api_key = 'somekey'
         config.private_api_key = 'pk'
         contents_api = RenuoCmsRails::API::Contents.new(config)
@@ -99,6 +99,40 @@ describe RenuoCmsRails::API::Contents do
             status: [500, 'Internal Server Error']
           )
           expect(contents_api.fetch).to eq({})
+        end
+      end
+
+      it 'returns an empty hash if the API request connection was not successful' do
+        config = RenuoCmsRails::Config.new
+        config.api_host = 'local-not-existing.renuo:3044'
+        config.api_key = 'somekey'
+        config.private_api_key = 'pk'
+        contents_api = RenuoCmsRails::API::Contents.new(config)
+
+        Timecop.freeze(Time.at(123).utc) do
+          begin
+            WebMock.allow_net_connect!
+            expect(contents_api.fetch).to eq({})
+          ensure
+            WebMock.disable_net_connect!
+          end
+        end
+      end
+
+      it 'returns an empty hash if the API the api host is invalid' do
+        config = RenuoCmsRails::Config.new
+        config.api_host = 'local-not-existing.renuo'
+        config.api_key = '<somekey>'
+        config.private_api_key = 'pk'
+        contents_api = RenuoCmsRails::API::Contents.new(config)
+
+        Timecop.freeze(Time.at(123).utc) do
+          begin
+            WebMock.allow_net_connect!
+            expect(contents_api.fetch).to eq({})
+          ensure
+            WebMock.disable_net_connect!
+          end
         end
       end
     end

@@ -27,6 +27,8 @@ module RenuoCmsRails
           request = Net::HTTP::Get.new uri
           handle_response(http.request(request))
         end
+      rescue StandardError
+        {}
       end
 
       private
